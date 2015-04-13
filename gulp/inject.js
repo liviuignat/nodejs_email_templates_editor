@@ -28,12 +28,12 @@ gulp.task('inject', ['styles', 'scripts'], function() {
   });
 
   var wiredepOptions = {
-    ignorePath: '../public',
+    ignorePath: '..',
     directory: paths.bower,
     exclude: [/bootstrap\.js/, /bootstrap\.css/, /bootstrap\.css/, /foundation\.css/]
   };
 
-  return gulp.src('./server/views/_layout.html')
+  return gulp.src(paths.src + '/_layout.html')
     .pipe($.inject(injectStyles, {
       ignorePath: [paths.src, paths.tmp],
       addRootSlash: true
