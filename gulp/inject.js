@@ -7,7 +7,8 @@ var paths = gulp.paths;
 
 gulp.task('inject', ['styles', 'scripts'], function() {
   var injectStyles = gulp.src([
-    paths.tmp + '/app/**/*.css'
+    paths.tmp + '/vendor.css',
+    paths.tmp + '/**/*.css'
   ], {
     read: false
   });
@@ -36,6 +37,7 @@ gulp.task('inject', ['styles', 'scripts'], function() {
   return gulp.src(paths.src + '/_layout.html')
     .pipe($.inject(injectStyles, {
       ignorePath: [paths.src, paths.tmp],
+      addPrefix: '/assets',
       addRootSlash: true
     }))
     .pipe($.inject(injectScripts, {
