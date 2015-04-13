@@ -1,6 +1,7 @@
 # Build artifacts
-server/public/dev/*.js
+server/public/.tmp
 server/public/bower
+server/views/_layout.html
 
 
 # Logs

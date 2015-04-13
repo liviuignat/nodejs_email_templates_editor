@@ -1,5 +1,5 @@
 var koa = require('koa');
-var serve = require('koa-static');
+var serveStatic = require('koa-static');
 var session = require('koa-session');
 var bodyParser = require('koa-body-parser');
 var methodOverride = require('koa-methodoverride')
@@ -44,9 +44,14 @@ var Server = (function() {
       filters: {}
     });
 
-    this.app.use(serve(this.rootFolder + '/public'));
-
-    return this;
+    this.app.use(staticWithPrefix({
+      path: this.rootFolder + '/public/bower',
+      prefix: '/bower'
+    }));
+    this.app.use(staticWithPrefix({
+      path: this.rootFolder + '/public/.tmp',
+      prefix: '/assets'
+    }));
 
     return this;
   };
@@ -63,5 +68,15 @@ var Server = (function() {
 
   return Server;
 })();
+
+var staticWithPrefix = function(option) {
+  return function * (next) {
+    if (this.path.indexOf(option.prefix) === 0) {
+      this.path = this.path.replace(option.prefix, '');
+      yield * serveStatic(option.path).bind(this)();
+    }
+    yield * next;
+  };
+}
 
 module.exports.Server = Server;
