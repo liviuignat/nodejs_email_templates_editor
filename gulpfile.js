@@ -3,10 +3,10 @@
 var gulp = require('gulp');
 
 gulp.paths = {
-  bower: 'server/public/bower',
+  bower: 'server/public/bower/bower',
   src: 'server/public/dev',
   dist: 'server/public/.dist',
-  tmp: 'server/public/.tmp',
+  tmp: 'server/public/.tmp/assets',
   views: 'server/views',
 };
 

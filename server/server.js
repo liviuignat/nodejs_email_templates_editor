@@ -44,14 +44,8 @@ var Server = (function() {
       filters: {}
     });
 
-    this.app.use(staticWithPrefix({
-      path: this.rootFolder + '/public/bower',
-      prefix: '/bower'
-    }));
-    this.app.use(staticWithPrefix({
-      path: this.rootFolder + '/public/.tmp',
-      prefix: '/assets'
-    }));
+    this.app.use(serveStatic(this.rootFolder + '/public/bower'));
+    this.app.use(serveStatic(this.rootFolder + '/public/.tmp'));
 
     return this;
   };
@@ -68,15 +62,5 @@ var Server = (function() {
 
   return Server;
 })();
-
-var staticWithPrefix = function(option) {
-  return function * (next) {
-    if (this.path.indexOf(option.prefix) === 0) {
-      this.path = this.path.replace(option.prefix, '');
-      yield * serveStatic(option.path).bind(this)();
-    }
-    yield * next;
-  };
-}
 
 module.exports.Server = Server;

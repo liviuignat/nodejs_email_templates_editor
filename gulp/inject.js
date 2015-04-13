@@ -29,7 +29,7 @@ gulp.task('inject', ['styles', 'scripts'], function() {
   });
 
   var wiredepOptions = {
-    ignorePath: '..',
+    ignorePath: '../bower',
     directory: paths.bower,
     exclude: [/bootstrap\.js/, /bootstrap\.css/, /bootstrap\.css/, /foundation\.css/]
   };
