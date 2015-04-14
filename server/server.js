@@ -5,6 +5,9 @@ var bodyParser = require('koa-body-parser');
 var methodOverride = require('koa-methodoverride')
 var router = require('koa-router');
 var render = require('koa-ejs');
+var gzip = require('koa-gzip');
+var etag = require('koa-etag');
+var fresh = require('koa-fresh');
 
 var path = require('path');
 var util = require('util');
@@ -49,6 +52,10 @@ var Server = (function() {
 
     this.app.use(serveStatic(path.join(this.rootFolder + '/public/bower')));
     this.app.use(serveStatic(path.join(this.rootFolder + config.server.assets)));
+
+    this.app.use(gzip());
+    this.app.use(fresh());
+    this.app.use(etag());
 
     return this;
   };
