@@ -43,10 +43,6 @@ gulp.task('html', ['inject', 'partials'], function() {
 
 gulp.task('copy-layout-prod', function(done) {
   fs.unlink(paths.views + '/_layout.production.html', function(err) {
-    if (err) {
-      return done(err);
-    }
-
     fs.createReadStream(paths.dist + '/_layout.html')
       .pipe(fs.createWriteStream(paths.views + '/_layout.production.html'));
 
