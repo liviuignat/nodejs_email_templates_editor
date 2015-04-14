@@ -1,3 +1,5 @@
+/// <reference path="./../../../interfaces.d.ts"/>
+
 var $inject = [
   '$location'
 ];
