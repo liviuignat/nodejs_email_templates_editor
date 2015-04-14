@@ -1,6 +1,8 @@
 {
+  "author": "Liviu Ignat <liviu@ignat.email>",
+  "license": "ISC",
   "name": "nodejs_email_templates_editor",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Node email template editor and api",
   "main": "app.js",
   "engines": {
@@ -10,12 +12,13 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node --harmony app.js"
   },
+  "scripts": {
+    "postinstall": "./node_modules/.bin/gulp build:prod"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/liviuignat/nodejs_email_templates_editor"
   },
-  "author": "Liviu Ignat <liviu@ignat.email>",
-  "license": "ISC",
   "bugs": {
     "url": "https://github.com/liviuignat/nodejs_email_templates_editor/issues"
   },
