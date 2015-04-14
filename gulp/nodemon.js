@@ -15,7 +15,7 @@ var nodemonIgnore = [
 gulp.task('nodemon', ['node:dev']);
 gulp.task('nodemon:prod', ['node:prod']);
 
-gulp.task('node:dev', ['build:dev'], function () {
+gulp.task('node:dev', [], function () {
   $.nodemon({
     script: 'app.js',
     execMap: {
@@ -31,7 +31,7 @@ gulp.task('node:dev', ['build:dev'], function () {
   })
 });
 
-gulp.task('node:prod', ['build:prod'], function () {
+gulp.task('node:prod', [], function () {
   $.nodemon({
     script: 'app.js',
     execMap: {

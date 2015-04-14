@@ -24,16 +24,13 @@ gulp.task('browser', ['watch'], function () {
   });
 });
 
-gulp.task('brwoser:prod', ['watch:prod'], function () {
+gulp.task('browser:prod', ['watch:prod'], function () {
   browserSync({
     proxy: 'localhost:8090',
     port: 9000,
     files: [
-      paths.tmp + '/*.css',
-      paths.tmp + '/**/*.css',
-      paths.tmp + '/*.js',
-      paths.tmp + '/**/*.js',
-      paths.tmp + '/*.html'
+      paths.views + '/_layout.html'
+
     ],
     open: true,
 

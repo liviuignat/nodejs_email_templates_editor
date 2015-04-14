@@ -24,6 +24,8 @@ var Server = (function() {
   };
 
   Server.prototype.init = function() {
+    var layoutPage = config.isDev ? '_layout' : '_layout.production';
+
     this.app.keys = ['fnjklhjh89347932kejlqw'];
     this.app.use(bodyParser());
     this.app.use(methodOverride());
@@ -37,7 +39,7 @@ var Server = (function() {
 
     render(this.app, {
       root: path.join(this.rootFolder, 'views'),
-      layout: '_layout',
+      layout: layoutPage,
       viewExt: 'html',
       cache: !config.isDev,
       debug: config.isDev,

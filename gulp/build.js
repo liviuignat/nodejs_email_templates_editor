@@ -42,13 +42,13 @@ gulp.task('html', ['inject', 'partials'], function() {
 });
 
 gulp.task('copy-layout-prod', function(done) {
-  fs.unlink(paths.views + '/_layout.html', function(err) {
+  fs.unlink(paths.views + '/_layout.production.html', function(err) {
     if (err) {
       return done(err);
     }
 
     fs.createReadStream(paths.dist + '/_layout.html')
-      .pipe(fs.createWriteStream(paths.views + '/_layout.html'));
+      .pipe(fs.createWriteStream(paths.views + '/_layout.production.html'));
 
     done();
   });
@@ -80,6 +80,10 @@ gulp.task('build:prod', function(done) {
   runSequence('clean', ['html', 'fonts', 'misc'],
     'copy-layout-prod',
     done);
+});
+
+gulp.task('build:prod-no-clean', function(done) {
+  runSequence(['html', 'fonts', 'misc'], 'copy-layout-prod', done);
 });
 
 gulp.task('build:dev', function(done) {

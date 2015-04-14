@@ -13,12 +13,12 @@ gulp.task('watch', ['inject'], function () {
   ], ['inject']);
 });
 
-gulp.task('watch:prod', ['build:prod'], function () {
+gulp.task('watch:prod', ['build:prod-no-clean'], function () {
   gulp.watch([
     paths.src + '/*.html',
     paths.src + '/**/*.tpl.html',
     paths.src + '/**/*.less',
     paths.src + '/**/*.ts',
     'bower.json'
-  ], ['inject']);
+  ], ['build:prod-no-clean']);
 });
