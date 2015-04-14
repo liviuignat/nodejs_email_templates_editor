@@ -1,8 +1,11 @@
 var gulp = require('gulp');
-var nodemon = require('gulp-nodemon');
+var $ = require('gulp-load-plugins')({
+  pattern: ['gulp-*']
+});
 
 var nodemonIgnore = [
   'server/public/*',
+  'server/public/**/*',
   'server/views/*',
   'node_modules/*',
   'config/*',
@@ -13,7 +16,7 @@ gulp.task('nodemon', ['node:dev']);
 gulp.task('nodemon:prod', ['node:prod']);
 
 gulp.task('node:dev', ['build:dev'], function () {
-  nodemon({
+  $.nodemon({
     script: 'app.js',
     execMap: {
       js: 'node --harmony'
@@ -29,7 +32,7 @@ gulp.task('node:dev', ['build:dev'], function () {
 });
 
 gulp.task('node:prod', ['build:prod'], function () {
-  nodemon({
+  $.nodemon({
     script: 'app.js',
     execMap: {
       js: 'node --harmony'
