@@ -1,1 +1,1 @@
-web: node app.js --harmony
+web: node --harmony app.js
