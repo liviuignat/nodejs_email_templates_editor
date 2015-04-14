@@ -9,6 +9,7 @@ var render = require('koa-ejs');
 var path = require('path');
 var util = require('util');
 var config = require('config');
+var route = require('./app/routes')
 
 var Server = (function() {
   function Server(options) {
@@ -44,19 +45,15 @@ var Server = (function() {
       filters: {}
     });
 
-    this.app.use(serveStatic(this.rootFolder + '/public/bower'));
-    this.app.use(serveStatic(this.rootFolder + '/public/.tmp'));
+    this.app.use(serveStatic(path.join(this.rootFolder + '/public/bower')));
+    this.app.use(serveStatic(path.join(this.rootFolder + config.server.assets)));
 
     return this;
   };
 
   Server.prototype.setupRoutes = function() {
     this.app.use(router(this.app));
-
-    this.app.get('/', function * () {
-      yield this.render('index');
-    });
-
+    route(this.app);
     return this;
   };
 
