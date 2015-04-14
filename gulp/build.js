@@ -76,14 +76,18 @@ gulp.task('clean', function(done) {
   $.del([paths.dist + '/', paths.tmp + '/'], done);
 });
 
+gulp.task('bower', function() {
+  return $.bower();
+});
+
 gulp.task('build:prod', function(done) {
-  runSequence('clean', ['html', 'fonts', 'misc'],
+  runSequence('clean', 'bower', ['html', 'fonts', 'misc'],
     'copy-layout-prod',
     done);
 });
 
 gulp.task('build:prod-no-clean', function(done) {
-  runSequence(['html', 'fonts', 'misc'], 'copy-layout-prod', done);
+  runSequence('bower', ['html', 'fonts', 'misc'], 'copy-layout-prod', done);
 });
 
 gulp.task('build:dev', function(done) {
