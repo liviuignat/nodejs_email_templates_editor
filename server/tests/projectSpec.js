@@ -1,10 +1,15 @@
-var supertest = require('./init').getRequest();
+var init = require('./init');
 var expect = require('chai').expect;
 
-describe('when server starts', function () {
-  var firstProject, secondProject;
+describe('when server starts', function() {
+  var supertest, firstProject, secondProject;
 
-  beforeEach(function () {
+  before(function * () {
+    supertest = yield init.getRequest();
+    yield init.cleanDb();
+  });
+
+  beforeEach(function() {
     firstProject = {
       name: 'second project',
       description: 'firstProject'
@@ -15,10 +20,10 @@ describe('when server starts', function () {
     };
   });
 
-  describe('when willing to add two projects', function () {
+  describe('when willing to add two projects', function() {
     var addFirstProjectRequest;
 
-    beforeEach(function () {
+    beforeEach(function() {
       addFirstProjectRequest = supertest
         .post('/api/v1/project')
         .send(firstProject);
@@ -33,7 +38,7 @@ describe('when server starts', function () {
       expect(response.header['location']).not.to.be.undefined;
     });
 
-    describe('when the two projects are added', function () {
+    describe('when the two projects are added', function() {
       beforeEach(function * () {
         var response = yield addFirstProjectRequest.end();
         firstProject.id = response.header['location'];
@@ -43,7 +48,7 @@ describe('when server starts', function () {
         secondProject.id = response.header['location'];
       });
 
-      describe('when the first project is updated', function () {
+      describe('when the first project is updated', function() {
 
       });
     });

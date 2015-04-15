@@ -8,7 +8,7 @@ var config = {
     port: 8090
   },
   mongo: {
-
+    url: 'mongodb://localhost:27017/emailcloud'
   }
 };
 
