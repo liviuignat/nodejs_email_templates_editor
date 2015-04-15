@@ -4,8 +4,14 @@ https://emailcloud.herokuapp.com/
 
 UI Email template editor with persistance in MongoDB which exposes an API to be able to send the emails further.
 
+First run:
 ```
+npm install //install dependencies
 gulp serve //run dev
+```
+
+Other tasks:
+```
 gulp serve:prod //run prod
 gulp test-client //run client tests
 gulp test-client:auto //watch client tests

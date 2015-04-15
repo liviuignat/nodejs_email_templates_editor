@@ -58,11 +58,12 @@ var Server = (function () {
       staticMaxAge = 365 * 24 * 60 * 60 * 1000;
     }
 
-    var staticOptions = {
+    this.app.use(serveStatic(path.join(this.rootFolder, '/public/bower'), {
       maxage: staticMaxAge
-    };
-    this.app.use(serveStatic(path.join(this.rootFolder, '/public/bower'), staticOptions));
-    this.app.use(serveStatic(path.join(this.rootFolder, config.server.assets), staticOptions));
+    }));
+    this.app.use(serveStatic(path.join(this.rootFolder, config.server.assets), {
+      maxage: staticMaxAge
+    }));
 
 
     return this;
