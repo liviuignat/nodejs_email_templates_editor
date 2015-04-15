@@ -1,6 +1,7 @@
 var util = require('util');
 var config = require('config');
 var projectRoutes = require('./projectRoutes');
+var templateRoutes = require('./templateRoutes');
 
 function setupApiRoutes(options) {
   var app = options.app;
@@ -11,6 +12,12 @@ function setupApiRoutes(options) {
   app.post(prefix + '/project', projectRoutes.addProject);
   app.put(prefix + '/project/:id', projectRoutes.updateProject);
   app.del(prefix + '/project/:id', projectRoutes.deleteProject);
+
+  app.get(prefix + '/project/:projectId/template', templateRoutes.getTemplates);
+  app.get(prefix + '/project/:projectId/template/:id', templateRoutes.getTemplateById);
+  app.post(prefix + '/project/:projectId/template', templateRoutes.addTemplate);
+  app.put(prefix + '/project/:projectId/template/:id', templateRoutes.updateTemplate);
+  app.del(prefix + '/project/:projectId/template/:id', templateRoutes.deleteTemplate);
 }
 
 function setupRoutes(app) {
