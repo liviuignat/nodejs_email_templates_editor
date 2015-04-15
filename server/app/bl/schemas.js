@@ -6,6 +6,15 @@ var projectSchema = new Schema({
   description: String
 });
 
+var templateSchema = new Schema({
+  projectId: String,
+  name: String,
+  description: String,
+  templateHtml: String,
+  sampleJson: String
+});
+
 module.exports = {
-  Project: mongoose.model('Project', projectSchema)
+  Project: mongoose.model('Project', projectSchema),
+  Template: mongoose.model('Template', templateSchema)
 };

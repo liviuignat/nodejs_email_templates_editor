@@ -1,14 +1,15 @@
 var mongoose = require('mongoose');
 var config = require('config');
 
+mongoose.connection.on('error', console.error.bind(console, 'connection error:'));
+mongoose.connection.once('open', function(callback) {});
+
 var UnitOfWork = function() {};
 
 UnitOfWork.prototype.connect = function * () {
   var url = config.mongo.url;
   mongoose.connect(url);
   this.db = mongoose.connection;
-  this.db.on('error', console.error.bind(console, 'connection error:'));
-  this.db.once('open', function(callback) {});
 };
 
 UnitOfWork.prototype.close = function * () {

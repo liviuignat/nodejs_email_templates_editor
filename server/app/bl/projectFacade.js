@@ -9,11 +9,19 @@ var ProjectFacade = function() {
 };
 
 ProjectFacade.prototype.getProjects = function * () {
-  return [];
+  yield this.uow.connect();
+  var projects = yield Project.find();
+  yield this.uow.close();
+  return projects;
 };
 
 ProjectFacade.prototype.getProjectById = function * (id) {
-  return {};
+  yield this.uow.connect();
+  var project = yield Project.findOne({
+    _id: id
+  });
+  yield this.uow.close();
+  return project;
 };
 
 ProjectFacade.prototype.addProject = function * (newProject) {
@@ -24,11 +32,19 @@ ProjectFacade.prototype.addProject = function * (newProject) {
 };
 
 ProjectFacade.prototype.updateProject = function * (project) {
-  return;
+  yield this.uow.connect();
+  var response = yield Project.update({
+    _id: project.id
+  }, project);
+  yield this.uow.close();
 };
 
-ProjectFacade.prototype.deleteProject = function * (project) {
-  return;
+ProjectFacade.prototype.deleteProject = function * (id) {
+  yield this.uow.connect();
+  var response = yield Project.find({
+    _id: id
+  }).remove();
+  yield this.uow.close();
 };
 
 module.exports = new ProjectFacade();

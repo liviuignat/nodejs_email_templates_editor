@@ -16,6 +16,7 @@ module.exports = {
     this.body = 'done';
   },
   updateProject: function * () {
+    var projectId = this.params.id;
     var project = this.request.body;
     yield projectFacade.updateProject(project);
     this.body = 'done';
