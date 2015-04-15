@@ -7,4 +7,10 @@ UI Email template editor with persistance in MongoDB which exposes an API to be 
 ```
 gulp serve //run dev
 gulp serve:prod //run prod
+gulp test-client //run client tests
+gulp test-client:auto //watch client tests
+gulp test-server //run server tests
+
+git remote add heroku [heroku_url]
+git push heroku master:master
 ```
