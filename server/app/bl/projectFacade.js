@@ -12,7 +12,7 @@ ProjectFacade.prototype.getProjects = function * () {
   yield this.uow.connect();
   var projects = yield Project.find();
   yield this.uow.close();
-  return projects;
+  return schema.map(projects);
 };
 
 ProjectFacade.prototype.getProjectById = function * (id) {
@@ -21,7 +21,7 @@ ProjectFacade.prototype.getProjectById = function * (id) {
     _id: id
   });
   yield this.uow.close();
-  return project;
+  return schema.map(project);
 };
 
 ProjectFacade.prototype.addProject = function * (newProject) {

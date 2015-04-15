@@ -1,1 +1,16 @@
-add project
+<div class="">
+  <div class="row">
+    <div class="col-sm-6 col-md-4 col-md-offset-4">
+      <div class="">
+        <h4>Add project</h4>
+        <form class="" ng-submit="model.createProject()">
+          <input ng-model="model.project.name" type="text" class="form-control" placeholder="Project name" required autofocus/>
+          <textarea ng-model="model.project.description" class="form-control" placeholder="Project description" required/>
+
+          <input type="submit" class="btn btn-lg btn-default btn-block" value="Create project" />
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+

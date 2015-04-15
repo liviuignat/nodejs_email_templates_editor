@@ -12,23 +12,110 @@ class ProjectService {
   }
 
   getProjects() {
-    return this.$q.when([]);
+    var deferred = this.$q.defer();
+    var url = '/api/project';
+
+    this.$http({
+      method: 'GET',
+      url: url
+    }).success((data, status) => {
+      if (status === 200) {
+        deferred.resolve(data);
+      }
+      deferred.reject();
+    }).error(() => {
+      deferred.reject();
+    }).catch(() => {
+      deferred.reject();
+    });
+
+    return deferred.promise;
   }
 
   getProjectById(projectId: string) {
-    return this.$q.when({});
+    var deferred = this.$q.defer();
+    var url = '/api/project/' + projectId;
+
+    this.$http({
+      method: 'GET',
+      url: url
+    }).success((data, status) => {
+      if (status === 200) {
+        deferred.resolve(data);
+      }
+      deferred.reject();
+    }).error(() => {
+      deferred.reject();
+    }).catch(() => {
+      deferred.reject();
+    });
+
+    return deferred.promise;
   }
 
-  addProject(project: IProject) {
-    return this.$q.when();
+  createProject(project: IProject) {
+    var deferred = this.$q.defer();
+    var url = '/api/project';
+
+    this.$http({
+      method: 'POST',
+      url: url,
+      data: project
+    }).success((data, status) => {
+      if (status === 201) {
+        deferred.resolve(data);
+      }
+      deferred.reject();
+    }).error(() => {
+      deferred.reject();
+    }).catch(() => {
+      deferred.reject();
+    });
+
+    return deferred.promise;
   }
 
   udpdateProject(project: IProject) {
-    return this.$q.when();
+    var deferred = this.$q.defer();
+    var url = '/api/project/' + project.id;
+
+    this.$http({
+      method: 'PUT',
+      url: url,
+      data: project
+    }).success((data, status) => {
+      if (status === 200) {
+        deferred.resolve(data);
+      }
+      deferred.reject();
+    }).error(() => {
+      deferred.reject();
+    }).catch(() => {
+      deferred.reject();
+    });
+
+    return deferred.promise;
   }
 
   deleteProject(projectId: string) {
-    return this.$q.when();
+    var deferred = this.$q.defer();
+    var url = '/api/project/' + projectId;
+
+    this.$http({
+      method: 'DELETE',
+      url: url
+    }).success((data, status) => {
+      if (status === 200) {
+        deferred.resolve(data);
+      }
+      deferred.reject();
+    }).error(() => {
+      deferred.reject();
+    }).catch(() => {
+      deferred.reject();
+    });
+
+    return deferred.promise;
   }
 }
 

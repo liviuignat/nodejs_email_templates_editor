@@ -19,7 +19,7 @@ class ListController {
     })
   }
 
-  clickItem(item) {
+  selectProject(item) {
     this.$location.path('/project/' + item.id)
   }
 }

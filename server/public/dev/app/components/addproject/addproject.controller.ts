@@ -14,6 +14,12 @@ class AddProjectController {
     private $location,
     private projectService: ProjectService) {
   }
+
+  createProject() {
+    return this.projectService.createProject(this.project).then(() => {
+      this.$location.path('/');
+    }).catch(() => {});
+  }
 }
 
 AddProjectController.$inject = $inject;
