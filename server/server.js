@@ -14,20 +14,21 @@ var util = require('util');
 var config = require('config');
 var route = require('./app/routes')
 
-var Server = (function() {
+var Server = (function () {
   function Server(options) {
     this.app = koa();
     this.rootFolder = path.join(options.dirname, 'server');
   }
 
-  Server.prototype.start = function() {
+  Server.prototype.start = function () {
     this.app.listen(config.server.port);
     console.log(util.format('Email server started on port %s as "%s" environment.'), config.server.port, process.env.NODE_ENV);
     return this;
   };
 
-  Server.prototype.init = function() {
+  Server.prototype.init = function () {
     var layoutPage = config.isDev ? '_layout' : '_layout.production';
+    var staticMaxAge = 0;
 
     this.app.keys = ['fnjklhjh89347932kejlqw'];
     this.app.use(bodyParser());
@@ -50,20 +51,25 @@ var Server = (function() {
       filters: {}
     });
 
-    if(!config.isDev) {
+    if (!config.isDev) {
       this.app.use(gzip());
       this.app.use(fresh());
       this.app.use(etag());
+      staticMaxAge = 30 * 24 * 3600 * 1000;
     }
 
-    this.app.use(serveStatic(path.join(this.rootFolder + '/public/bower')));
-    this.app.use(serveStatic(path.join(this.rootFolder + config.server.assets)));
+    this.app.use(serveStatic(path.join(this.rootFolder + '/public/bower'), {
+      maxage: staticMaxAge
+    }));
+    this.app.use(serveStatic(path.join(this.rootFolder + config.server.assets)), {
+      maxage: staticMaxAge
+    });
 
 
     return this;
   };
 
-  Server.prototype.setupRoutes = function() {
+  Server.prototype.setupRoutes = function () {
     this.app.use(router(this.app));
     route(this.app);
     return this;
