@@ -2,7 +2,9 @@ var Server = require('./../server').Server;
 var q = require('q');
 var config = require('config');
 var supertest = require('co-supertest');
-var MongoClient = require('mongodb').MongoClient
+var MongoClient = require('mongodb').MongoClient;
+
+process.testRequest = null;
 
 module.exports = {
   cleanDb: function() {
@@ -17,15 +19,17 @@ module.exports = {
     return deferred.promise;
   },
   getRequest: function * () {
-    var server = new Server({
-        dirname: './'
-      })
-      .init()
-      .setupRoutes()
-      .start();
+    if (!process.testRequest) {
+      var server = new Server({
+          dirname: './'
+        })
+        .init()
+        .setupRoutes()
+        .start();
 
-    var app = server.app;
-
-    return supertest.agent(app.listen());
+      var app = server.app;
+      process.testRequest = supertest.agent(app.listen());
+    }
+    return process.testRequest;
   }
 }

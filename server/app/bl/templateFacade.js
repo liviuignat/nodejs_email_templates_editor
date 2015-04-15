@@ -19,8 +19,7 @@ TemplateFacade.prototype.getTemplates = function * (projectId) {
 TemplateFacade.prototype.getTemplateById = function * (id) {
   yield this.uow.connect();
   var template = yield Template.findOne({
-    _id: id,
-    projectId: projectId
+    _id: id
   });
   yield this.uow.close();
   return schema.map(template);
