@@ -55,15 +55,14 @@ var Server = (function () {
       this.app.use(gzip());
       this.app.use(fresh());
       this.app.use(etag());
-      staticMaxAge = 30 * 24 * 3600 * 1000;
+      staticMaxAge = 365 * 24 * 60 * 60;
     }
 
-    this.app.use(serveStatic(path.join(this.rootFolder + '/public/bower'), {
+    var staticOptions = {
       maxage: staticMaxAge
-    }));
-    this.app.use(serveStatic(path.join(this.rootFolder + config.server.assets)), {
-      maxage: staticMaxAge
-    });
+    };
+    this.app.use(serveStatic(path.join(this.rootFolder, '/public/bower'), staticOptions));
+    this.app.use(serveStatic(path.join(this.rootFolder, config.server.assets), staticOptions));
 
 
     return this;
