@@ -23,23 +23,44 @@
     <![endif]-->
   </head>
   <body>
-  <%- body %>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#"><%= pageTitle || '' %></a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="/">Projects</a></li>
+            <li><a href="/addproject">Add Project</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
 
-  <!-- build:js(server/public/bower) /assets/vendor.js -->
-  <!-- bower:js -->
-  <!-- run `gulp wiredep` to automaticaly populate bower script dependencies -->
-  <!-- endbower -->
-  <!-- endbuild -->
+    <div class="container main-container">
+      <%- body %>
+    </div>
 
-  <!-- build:js(server/public/.tmp) /assets/app.js -->
-  <!-- inject:js -->
-  <!-- js files will be automaticaly insert here -->
-  <!-- endinject -->
+    <!-- build:js(server/public/bower) /assets/vendor.js -->
+    <!-- bower:js -->
+    <!-- run `gulp wiredep` to automaticaly populate bower script dependencies -->
+    <!-- endbower -->
+    <!-- endbuild -->
 
-  <!-- inject:partials -->
-  <!-- angular templates will be automatically converted in js and inserted here -->
-  <!-- endinject -->
-  <!-- endbuild -->
+    <!-- build:js(server/public/.tmp) /assets/app.js -->
+    <!-- inject:js -->
+    <!-- js files will be automaticaly insert here -->
+    <!-- endinject -->
+
+    <!-- inject:partials -->
+    <!-- angular templates will be automatically converted in js and inserted here -->
+    <!-- endinject -->
+    <!-- endbuild -->
 
   </body>
 </html>

@@ -4,14 +4,14 @@ var expect = require('chai').expect;
 describe('when server starts', function () {
   beforeEach(function () {});
 
-  describe('when calling /api/v1/', function () {
+  describe('when calling /api/v1/project', function () {
     var request;
     beforeEach(function () {
-      request = supertest.get('/api/v1/');
+      request = supertest.get('/api/v1/project');
     });
 
     it('should return 200 status code', function * () {
-      yield supertest.get('/api/v1/').expect(200).end();
+      yield supertest.get('/api/v1/project').expect(200).end();
     });
 
     describe('when request is completed', function () {
@@ -21,7 +21,6 @@ describe('when server starts', function () {
       });
 
       it('should return a json', function * () {
-        expect(response.body.index).to.equals(true);
       });
     });
 

@@ -23,3 +23,9 @@ declare var beforeEach: any;
 declare var spyOn: any;
 declare var it: any;
 declare var expect: any;
+
+interface IProject {
+  id: string;
+  name: string;
+  description: string;
+}
