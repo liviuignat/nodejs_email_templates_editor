@@ -55,7 +55,7 @@ var Server = (function () {
       this.app.use(gzip());
       this.app.use(fresh());
       this.app.use(etag());
-      staticMaxAge = 365 * 24 * 60 * 60;
+      staticMaxAge = 365 * 24 * 60 * 60 * 1000;
     }
 
     var staticOptions = {
