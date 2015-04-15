@@ -50,9 +50,11 @@ var Server = (function() {
       filters: {}
     });
 
-    this.app.use(gzip());
-    this.app.use(fresh());
-    this.app.use(etag());
+    if(!config.isDev) {
+      this.app.use(gzip());
+      this.app.use(fresh());
+      this.app.use(etag());
+    }
 
     this.app.use(serveStatic(path.join(this.rootFolder + '/public/bower')));
     this.app.use(serveStatic(path.join(this.rootFolder + config.server.assets)));
