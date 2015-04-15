@@ -25,7 +25,7 @@ declare var it: any;
 declare var expect: any;
 
 interface IProject {
-  id: string;
+  id?: string;
   name: string;
   description: string;
 }

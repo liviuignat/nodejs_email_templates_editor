@@ -2,27 +2,50 @@ var supertest = require('./init').getRequest();
 var expect = require('chai').expect;
 
 describe('when server starts', function () {
-  beforeEach(function () {});
+  var firstProject, secondProject;
 
-  describe('when calling /api/v1/project', function () {
-    var request;
+  beforeEach(function () {
+    firstProject = {
+      name: 'second project',
+      description: 'firstProject'
+    };
+    secondProject = {
+      name: 'second project',
+      description: 'secondProject'
+    };
+  });
+
+  describe('when willing to add two projects', function () {
+    var addFirstProjectRequest;
+
     beforeEach(function () {
-      request = supertest.get('/api/v1/project');
+      addFirstProjectRequest = supertest
+        .post('/api/v1/project')
+        .send(firstProject);
     });
 
     it('should return 200 status code', function * () {
-      yield supertest.get('/api/v1/project').expect(200).end();
+      yield addFirstProjectRequest.expect(201).end();
     });
 
-    describe('when request is completed', function () {
-      var response;
+    it('should have "Location" header set', function * () {
+      var response = yield addFirstProjectRequest.end();
+      expect(response.header['location']).not.to.be.undefined;
+    });
+
+    describe('when the two projects are added', function () {
       beforeEach(function * () {
-        response = yield supertest.get('/api/v1/').end();
+        var response = yield addFirstProjectRequest.end();
+        firstProject.id = response.header['location'];
+      });
+      beforeEach(function * () {
+        var response = supertest.post('/api/v1/project').send(secondProject).end();
+        secondProject.id = response.header['location'];
       });
 
-      it('should return a json', function * () {
+      describe('when the first project is updated', function () {
+
       });
     });
-
   });
 });

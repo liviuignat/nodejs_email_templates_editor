@@ -6,6 +6,9 @@ var config = {
   server: {
     assets: '/public/.tmp',
     port: 8090
+  },
+  mongo: {
+
   }
 };
 
