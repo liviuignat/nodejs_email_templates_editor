@@ -29,3 +29,10 @@ interface IProject {
   name: string;
   description: string;
 }
+
+interface ITemplate {
+  id?: string;
+  projectId: string;
+  name: string;
+  description: string;
+}
