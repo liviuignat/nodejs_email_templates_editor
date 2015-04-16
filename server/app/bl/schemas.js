@@ -16,6 +16,9 @@ var templateSchema = new Schema({
 });
 
 var mapEntity = function(entity) {
+  if (!entity) {
+    return entity;
+  }
   var json = entity.toJSON();
   json.id = json._id;
   delete json._id;
@@ -27,6 +30,9 @@ var mapEntitiesArray = function(entities) {
   })
 };
 var map = function(entityOrArray) {
+  if (!entityOrArray) {
+    return entityOrArray;
+  }
   var isArray = typeof entityOrArray.map === 'function';
   if (isArray) {
     return mapEntitiesArray(entityOrArray);

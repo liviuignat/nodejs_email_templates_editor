@@ -16,8 +16,8 @@ class AddProjectController {
   }
 
   createProject() {
-    return this.projectService.createProject(this.project).then(() => {
-      this.$location.path('/');
+    return this.projectService.createProject(this.project).then((projectId: number) => {
+      this.$location.path('/project/' + projectId);
     }).catch(() => {});
   }
 }

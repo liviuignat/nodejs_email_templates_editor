@@ -1,1 +1,20 @@
-projectdetail
+<div class="container">
+  <header>
+    <h3>{{model.project.name}}</h3>
+    <p>{{model.project.description}}</p>
+  </header>
+
+  <div>
+    <button class="btn btn-primary" ng-click="model.addTemplate()">Add template</button>
+    <button class="btn btn-danger" ng-click="model.deleteProject()">Delete project</button>
+  </div>
+
+  <div class="tempaltesContainer">
+    <div class="row tempaltesContainer-row" ng-click="model.selectTemplate(template)" ng-show="model.templates.length" ng-repeat="template in model.templates">
+      {{template.name}}
+    </div>
+    <div class="row projectsContainer-row" ng-show="!model.templates.length">
+      Click add project to add a new one!
+    </div>
+  </div>
+<div>

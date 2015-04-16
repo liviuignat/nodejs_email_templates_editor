@@ -3,7 +3,7 @@
   <div class="row projectsContainer-row" ng-click="model.selectProject(project)" ng-show="model.projects.length" ng-repeat="project in model.projects">
     {{project.name}}
   </div>
-  <div class="row projectsContainer-row" ng-show="!model.projects.length">
+  <div class="row projectsContainer-row" ng-show="!model.projects.length" ng-click="model.addProject()">
     Click add project to add a new one!
   </div>
 </div>

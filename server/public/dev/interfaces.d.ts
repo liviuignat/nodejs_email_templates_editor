@@ -1,5 +1,7 @@
 declare var require: any;
 declare var angular: any;
+declare var bootbox: any;
+
 declare var describe: any;
 declare var beforeEach: any;
 declare var module: any;

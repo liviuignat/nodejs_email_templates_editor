@@ -31,7 +31,7 @@ gulp.task('inject', ['styles', 'scripts'], function() {
   var wiredepOptions = {
     ignorePath: '../bower',
     directory: paths.bower,
-    exclude: [/bootstrap\.js/, /bootstrap\.css/, /bootstrap\.css/, /foundation\.css/]
+    exclude: [/bootstrap\.css/, /bootstrap\.css/, /foundation\.css/]
   };
 
   return gulp.src(paths.src + '/_layout.html')

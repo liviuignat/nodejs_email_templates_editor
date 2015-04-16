@@ -11,7 +11,7 @@ class TemplateService {
   constructor(private $q, private $http) {
   }
 
-  getTemplate(projectId: string) {
+  getTemplates(projectId: string) {
     var deferred = this.$q.defer();
     var url = '/api/project/' + projectId + '/template';
 

@@ -78,7 +78,8 @@ describe('when server starts', function() {
           });
 
           describe('when getting first project', function() {
-            var getFirstProjectRequest;
+            var getFirstProjectRequest, getFirstProjectResponse;
+
             beforeEach(function * () {
               yield updateFirstProjectRequest.end();
               getFirstProjectRequest = supertest.get('/api/v1/project/' + firstProject.id);
@@ -88,8 +89,8 @@ describe('when server starts', function() {
               yield getFirstProjectRequest.expect(200).end();
             });
 
-            it('should return updated first object', function * () {
-              var getFirstProjectResponse = yield getFirstProjectRequest.end();
+            it('should have the updated name', function * () {
+              getFirstProjectResponse = yield getFirstProjectRequest.end();
               expect(getFirstProjectResponse.body).not.to.be.undefined;
               expect(getFirstProjectResponse.body.name).to.equal(updatedName);
             });

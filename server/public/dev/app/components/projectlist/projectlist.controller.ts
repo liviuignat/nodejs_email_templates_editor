@@ -16,11 +16,15 @@ class ListController {
 
     this.projectService.getProjects().then((projects: IProject[]) => {
       this.projects = projects;
-    })
+    });
   }
 
   selectProject(item) {
-    this.$location.path('/project/' + item.id)
+    this.$location.path('/project/' + item.id);
+  }
+
+  addProject() {
+    this.$location.path('/addproject');
   }
 }
 
