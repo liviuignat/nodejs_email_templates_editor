@@ -1,3 +1,5 @@
+/// <reference path="./interfaces.d.ts"/>
+
 angular.module('app', [
   'ngAnimate',
   'ngTouch',
@@ -18,10 +20,20 @@ angular.module('app').config(function ($routeProvider, $locationProvider) {
       controller: 'AddProjectController',
       controllerAs:'model'
     })
-    .when('/project/:id', {
+    .when('/project/:projectId', {
       templateUrl: 'components/projectdetail/projectdetail.controller.tpl.html',
       controller: 'ProjectDetailController',
       controllerAs:'model'
+    })
+    .when('/project/:projectId/addtemplate', {
+      templateUrl: 'components/addtemplate/addtemplate.controller.tpl.html',
+      controller: 'AddTemplateController',
+      controllerAs: 'model'
+    })
+    .when('/project/:projectId/template/:templateId', {
+      templateUrl: 'components/templatedetail/templatedetail.controller.tpl.html',
+      controller: 'TemplateDetailController',
+      controllerAs: 'model'
     })
     .otherwise({
       redirectTo: '/'

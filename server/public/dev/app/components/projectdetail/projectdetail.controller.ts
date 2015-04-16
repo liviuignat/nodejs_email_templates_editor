@@ -24,7 +24,7 @@ class ProjectDetailController {
     private projectService: ProjectService,
     private templateService: TemplateService) {
 
-    this.projectId = this.$routeParams.id;
+    this.projectId = this.$routeParams.projectId;
 
     this.projectService.getProjectById(this.projectId).then((project: IProject) => {
       this.project = project;
@@ -35,9 +35,11 @@ class ProjectDetailController {
   }
 
   addTemplate() {
+    this.$location.path('/project/' + this.projectId + '/addtemplate');
   }
 
   selectTemplate(template: ITemplate) {
+    this.$location.path('/project/' + this.projectId + '/template/' + template.id);
   }
 
   deleteProject() {

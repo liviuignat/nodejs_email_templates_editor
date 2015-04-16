@@ -34,7 +34,7 @@ interface IProject {
 
 interface ITemplate {
   id?: string;
-  projectId: string;
+  projectId?: string;
   name: string;
   description: string;
 }

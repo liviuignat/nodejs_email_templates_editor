@@ -1,1 +1,15 @@
-add template
+<div class="">
+  <div class="row">
+    <div class="col-sm-6 col-md-4 col-md-offset-4">
+      <div class="">
+        <h4>Add template for "{{model.project.name}}"</h4>
+        <form class="" ng-submit="model.createTemplate()">
+          <input ng-model="model.template.name" type="text" class="form-control" placeholder="Template name" required autofocus/>
+          <textarea ng-model="model.template.description" class="form-control" placeholder="Template description" required/>
+
+          <button type="submit" class="btn btn-lg btn-default btn-block">Create template</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

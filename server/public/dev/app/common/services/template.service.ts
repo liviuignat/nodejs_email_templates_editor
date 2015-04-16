@@ -61,9 +61,9 @@ class TemplateService {
       method: 'POST',
       url: url,
       data: template
-    }).success((data, status) => {
+    }).success((data, status, headers) => {
       if (status === 201) {
-        deferred.resolve(data);
+        deferred.resolve(headers('location'));
       }
       deferred.reject();
     }).error(() => {

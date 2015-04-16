@@ -9,8 +9,8 @@
     <button class="btn btn-danger" ng-click="model.deleteProject()">Delete project</button>
   </div>
 
-  <div class="tempaltesContainer">
-    <div class="row tempaltesContainer-row" ng-click="model.selectTemplate(template)" ng-show="model.templates.length" ng-repeat="template in model.templates">
+  <div class="templatesContainer">
+    <div class="row templatesContainer-row" ng-click="model.selectTemplate(template)" ng-show="model.templates.length" ng-repeat="template in model.templates">
       {{template.name}}
     </div>
     <div class="row projectsContainer-row" ng-show="!model.templates.length">

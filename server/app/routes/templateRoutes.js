@@ -9,6 +9,7 @@ module.exports = {
   },
   addTemplate: function * () {
     var template = this.request.body;
+    template.projectId = this.params.projectId;
     var addedTemplate = yield templateFacade.addTemplate(template);
 
     this.status = 201;
