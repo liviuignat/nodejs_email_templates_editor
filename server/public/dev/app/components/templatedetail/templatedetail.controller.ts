@@ -37,7 +37,7 @@ class TemplateDetailController {
       'Enter': 'newlineAndIndentContinueComment'
     },
     mode: {
-      name: 'html'
+      name: 'htmlmixed'
     },
     theme: 'night'
   }
