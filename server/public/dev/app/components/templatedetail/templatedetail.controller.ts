@@ -14,8 +14,9 @@ class TemplateDetailController {
   project: IProject;
   template: ITemplate;
   activeTabIndex: number = 0;
+  sendToTestEmail: string = '';
 
-  jsonEditorData: string = "";
+  jsonEditorData: string = '';
   jsonEditorOptions = {
     lineNumbers: true,
     matchBrackets: true,
@@ -76,7 +77,9 @@ class TemplateDetailController {
     this.template.sampleJson = this.jsonEditorData;
     this.template.templateHtml = this.htmlEditorData;
 
-    this.templateService.udpdateTemplate(this.project.id, this.template).then(() => {});
+    this.templateService.udpdateTemplate(this.project.id, this.template).then(() => {
+      this.alertService.showSuccessAlert('Template saved!');
+    });
   }
 
   deleteTemplate(): void {
@@ -86,6 +89,18 @@ class TemplateDetailController {
       .then(() => {
         this.$location.path('/project/' + this.project.id);
       });
+  }
+
+  sendTestEmail() {
+    this.alertService.showErrorAlert('Not yet implemented!');
+  }
+
+  previewHtmlTemplate() {
+    this.alertService.showErrorAlert('Not yet implemented!');
+  }
+
+  previewPdfTemplate() {
+    this.alertService.showErrorAlert('Not yet implemented!');
   }
 }
 

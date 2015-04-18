@@ -1,3 +1,4 @@
+declare var $alert: any;
 declare var require: any;
 declare var angular: any;
 declare var bootbox: any;

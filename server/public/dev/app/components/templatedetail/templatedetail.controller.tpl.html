@@ -13,8 +13,19 @@
       <pre>project id: {{model.project.id}}</pre>
       <pre>template id: {{model.template.id}}</pre>
 
+      <strong>Test via email:</strong>
+      <div class="input-group">
+        <input type="email" class="form-control" placeholder="email to" ng-model="model.sendToTestEmail">
+        <span class="input-group-btn">
+          <button class="btn btn-primary" ng-click="model.sendTestEmail()" type="button">Send test email</button>
+        </span>
+      </div>
+
+      <br/>
       <div>
-        <button class="btn btn-primary" ng-click="model.saveTemplate()">Save template</button>
+        <button class="btn btn-primary" ng-click="model.previewHtmlTemplate()">Preview HTML</button>
+        <button class="btn btn-primary" ng-click="model.previewPdfTemplate()">Preview PDF</button>
+        <button class="btn btn-warning" ng-click="model.saveTemplate()">Save template</button>
         <button class="btn btn-danger" ng-click="model.deleteTemplate()">Delete Template</button>
       </div>
     </div>

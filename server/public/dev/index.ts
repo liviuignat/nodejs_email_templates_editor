@@ -6,6 +6,7 @@ angular.module('app', [
   'ngSanitize',
   'ngResource',
   'ngRoute',
+  'mgcrea.ngStrap',
   'ui.codemirror',
 ]);
 
