@@ -37,4 +37,6 @@ interface ITemplate {
   projectId?: string;
   name: string;
   description: string;
+  templateHtml: string;
+  sampleJson: string;
 }

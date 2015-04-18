@@ -1,1 +1,30 @@
-template detail
+<div role="tabpanel">
+  <ul class="nav nav-tabs" role="tablist">
+    <li><a data-toggle="tab" href data-toggle="tab" ng-class="{'active': model.isActive(0)}" ng-click="model.setActive(0)">Details</a></li>
+    <li><a data-toggle="tab" href ng-class="{'active': model.isActive(1)}" ng-click="model.setActive(1)">HTML</a></li>
+    <li><a data-toggle="tab" href ng-class="{'active': model.isActive(2)}" ng-click="model.setActive(2)">JSON</a></li>
+  </ul>
+
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane" ng-class="{'active': model.isActive(0)}">
+      <h3>{{model.project.name}} - {{model.project.description}}</h3>
+      <h4>{{model.template.name}} - {{model.template.description}}</h4>
+
+      <pre>project id: {{model.project.id}}</pre>
+      <pre>template id: {{model.template.id}}</pre>
+
+      <div>
+        <button class="btn btn-primary" ng-click="model.saveTemplate()">Save template</button>
+        <button class="btn btn-danger" ng-click="model.deleteTemplate()">Delete Template</button>
+      </div>
+    </div>
+
+    <div role="tabpanel" class="tab-pane" ng-class="{'active': model.isActive(1)}">
+      <ui-codemirror ui-codemirror-opts="model.htmlEditorOptions" ng-model="model.htmlEditorData"></ui-codemirror>
+    </div>
+    <div role="tabpanel" class="tab-pane" ng-class="{'active': model.isActive(2)}">
+      <ui-codemirror ui-codemirror-opts="model.jsonEditorOptions" ng-model="model.jsonEditorData"></ui-codemirror>
+    </div>
+  </div>
+
+</div>

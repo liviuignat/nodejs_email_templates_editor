@@ -5,7 +5,9 @@ angular.module('app', [
   'ngTouch',
   'ngSanitize',
   'ngResource',
-  'ngRoute']);
+  'ngRoute',
+  'ui.codemirror',
+]);
 
 angular.module('app').config(function ($routeProvider, $locationProvider) {
   $routeProvider.caseInsensitiveMatch = true;
