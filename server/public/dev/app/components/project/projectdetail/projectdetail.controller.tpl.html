@@ -1,0 +1,26 @@
+<div class="container row">
+  <div class="col-xs-12 col-md-3">
+    <project-menu active-index="0" project-id="model.projectId"></project-menu>
+  </div>
+  <div class="col-xs-12 col-md-9">
+    <header>
+      <h4>{{model.project.name}} - {{model.project.description}}</h4>
+      <pre>project id: {{model.project.id}}</pre>
+    </header>
+
+
+    <div>
+      <button class="btn btn-primary" ng-click="model.addTemplate()">Add template</button>
+    </div>
+    <br/>
+
+    <div class="templatesContainer">
+      <div class="templatesContainer-row" ng-click="model.selectTemplate(template)" ng-show="model.templates.length" ng-repeat="template in model.templates">
+        {{template.name}}
+      </div>
+      <div class="projectsContainer-row" ng-show="!model.templates.length">
+        Click add project to add a new one!
+      </div>
+    </div>
+  </div>
+<div>

@@ -18,33 +18,20 @@
     };
 
     function directive(name, ConstructorFn) {
+      var directive = function() {
+        return {
+          restrict: ConstructorFn.$restrict || 'EA',
+          templateUrl: ConstructorFn.$templateUrl,
+          template: ConstructorFn.$template,
+          scope: ConstructorFn.$scope,
+          link: ConstructorFn.prototype.link,
+          controller: ConstructorFn,
+          controllerAs: 'model',
+          bindToController: true
+        }
+      };
 
-      ConstructorFn = _normalizeConstructor(ConstructorFn);
-
-      if (!ConstructorFn.prototype.compile) {
-        // create an empty compile function if none was defined.
-        ConstructorFn.prototype.compile = () => {};
-      }
-
-      var originalCompileFn = _cloneFunction(ConstructorFn.prototype.compile);
-
-      // Decorate the compile method to automatically return the link method (if it exists)
-      // and bind it to the context of the constructor (so `this` works correctly).
-      // This gets around the problem of a non-lexical "this" which occurs when the directive class itself
-      // returns `this.link` from within the compile function.
-      _override(ConstructorFn.prototype, 'compile', function () {
-        return function () {
-          originalCompileFn.apply(this, arguments);
-
-          if (ConstructorFn.prototype.link) {
-            return ConstructorFn.prototype.link.bind(this);
-          }
-        };
-      });
-
-      var factoryArray = _createFactoryArray(ConstructorFn);
-
-      app.directive(name, factoryArray);
+      app.directive(name, directive);
       return this;
     }
 
@@ -117,7 +104,6 @@
         }
         return instance;
       });
-
       return factoryArray;
     }
 

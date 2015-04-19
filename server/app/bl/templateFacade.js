@@ -34,4 +34,14 @@ TemplateFacade.prototype.deleteTemplate = function * (id) {
   }).remove();
 };
 
+TemplateFacade.prototype.getFormattedTemplate = function * (templateId, json) {
+  var template = yield this.getTemplateById(templateId);
+  var layoutHtml = '<!--CONTENT-->';
+  var emailTemplate = layoutHtml.replace('<!--CONTENT-->', emailHtml);
+  var modelToBind = {
+    urlAuthority: config.emails.urlAuthority,
+    model: model
+  };
+};
+
 module.exports = new TemplateFacade();

@@ -1,0 +1,55 @@
+<div class="container row">
+  <div class="col-xs-12 col-md-3">
+    <project-menu active-index="2" project-id="model.project.id"></project-menu>
+  </div>
+  <div class="col-xs-12 col-md-9">
+    <header>
+      <h4>{{model.project.name}} - {{model.project.description}}</h4>
+      <pre>project id: {{model.project.id}}</pre>
+    </header>
+
+    <div>
+      <table class="table table-hover">
+        <caption>Languages.</caption>
+        <tbody>
+          <tr>
+            <th style="width:20%;">Key</th>
+            <th style="width:50%;">Name</th>
+            <th style="width:30%;">&nbsp;</th>
+          </tr>
+          <tr ng-repeat="language in model.languages">
+            <td>
+              <span editable-text="language.key" e-name="key" e-form="rowform" onbeforesave="model.checkKey($data, language.key)" e-required>
+                {{ language.key || 'empty' }}
+              </span>
+            </td>
+            <td>
+              <span editable-text="language.name" e-name="name" e-form="rowform" onbeforesave="model.checkName($data, language.name)" e-required>
+                {{ language.name || 'empty' }}
+              </span>
+            </td>
+            <td style="white-space: nowrap">
+              <!-- form -->
+              <form editable-form name="rowform" onbeforesave="model.saveLanguage($data, language.key)" ng-show="rowform.$visible" class="form-buttons form-inline" shown="model.inserted == language">
+                <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-primary">
+                  save
+                </button>
+                <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()" class="btn btn-default">
+                  cancel
+                </button>
+              </form>
+              <div class="buttons" ng-show="!rowform.$visible">
+                <button class="btn btn-primary" ng-click="rowform.$show()">edit</button>
+                <button class="btn btn-danger" ng-click="model.removeLanguage($index)">del</button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <button class="btn btn-default" ng-click="model.addLanguage()">Add Row</button>
+      <button class="btn btn-primary" ng-click="model.saveProject()">Save Project</button>
+    </div>
+
+  </div>
+<div>

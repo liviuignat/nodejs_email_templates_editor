@@ -31,6 +31,19 @@ interface IProject {
   id?: string;
   name: string;
   description: string;
+  layoutHtml: string;
+  settings: IProjectSettings;
+  languages: ILanguage[];
+}
+
+interface ILanguage {
+  id?: string;
+  key: string;
+  name: string;
+}
+
+interface IProjectSettings {
+  urlAuthority: string;
 }
 
 interface ITemplate {

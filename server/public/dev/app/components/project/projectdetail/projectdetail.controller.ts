@@ -1,7 +1,7 @@
-/// <reference path="./../../../interfaces.d.ts"/>
-/// <reference path="./../../common/services/alert.service.ts"/>
-/// <reference path="./../../common/services/project.service.ts"/>
-/// <reference path="./../../common/services/template.service.ts"/>
+/// <reference path="./../../../../interfaces.d.ts"/>
+/// <reference path="./../../../common/services/alert.service.ts"/>
+/// <reference path="./../../../common/services/project.service.ts"/>
+/// <reference path="./../../../common/services/template.service.ts"/>
 
 var $inject = [
   '$location',

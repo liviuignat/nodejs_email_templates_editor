@@ -1,4 +1,4 @@
-/// <reference path="./../../../interfaces.d.ts"/>
+/// <reference path="./../../../../interfaces.d.ts"/>
 
 describe('ListController', function () {
   var $scope, $q, $location;

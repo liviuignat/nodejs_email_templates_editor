@@ -1,0 +1,34 @@
+<div class="container row">
+  <div class="col-xs-12 col-md-3">
+    <project-menu active-index="1" project-id="model.project.id"></project-menu>
+  </div>
+  <div class="col-xs-12 col-md-9">
+    <header>
+      <h4>{{model.project.name}} - {{model.project.description}}</h4>
+      <h4>Edit project</h4>
+    </header>
+
+    <pre>project id: {{model.project.id}}</pre>
+
+    <form class="" ng-submit="model.saveProject()">
+      <div class="form-group">
+        <input ng-model="model.project.name" type="text" class="form-control" placeholder="Project name" required autofocus/>
+      </div>
+      <div class="form-group">
+        <textarea ng-model="model.project.description" class="form-control" placeholder="Project description" required></textarea>
+      </div>
+
+      <div class="form-group">
+        <ui-codemirror ui-codemirror-opts="model.projectLayoutEditorOptions" ng-model="model.projectLayoutHtml"></ui-codemirror>
+      </div>
+
+      <div>
+        <br/>
+        <button class="btn btn-primary" ng-click="">Save Project</button>
+        <button class="btn btn-danger" ng-click="model.deleteProject()">Delete project</button>
+      </div>
+
+    </form>
+
+  </div>
+<div>

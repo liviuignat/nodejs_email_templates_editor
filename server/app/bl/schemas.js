@@ -2,9 +2,19 @@ var util = require('util');
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
+var languageSchema = new Schema({
+  key: String,
+  name: String
+});
+
 var projectSchema = new Schema({
   name: String,
-  description: String
+  description: String,
+  layoutHtml: String,
+  settings: {
+    urlAuthority: String
+  },
+  languages: [languageSchema]
 });
 
 var templateSchema = new Schema({
