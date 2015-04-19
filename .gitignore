@@ -1,7 +1,7 @@
 # Build artifacts
 server/public/.tmp
 server/public/.dist
-server/public/bower
+# server/public/bower
 server/views/_layout.html
 server/views/_layout.production.html
 
