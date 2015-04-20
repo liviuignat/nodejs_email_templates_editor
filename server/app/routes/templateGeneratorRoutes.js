@@ -7,19 +7,22 @@ module.exports = {
     var json = this.request.body.json;
     var options = this.request.body.options;
 
-    var html = yield templateGeneratorService.getHtml(templateId, json, options);
+    var previewOptions = this.session.previewOptions || {};
+    previewOptions.templateId = this.request.body;
+    this.session.previewOptions = previewOptions;
 
-    var templatesFromSession = this.session.templates || {};
-    templatesFromSession.templateId = html;
-    this.session.templates = templatesFromSession;
-
-    this.body = html;
+    this.body = previewOptions;
   },
 
   previewFromSession: function * () {
     var templateId = this.params.templateId;
-    var templatesFromSession = this.session.templates || {};
-    this.body = templatesFromSession.templateId;
+    var previewOptions = this.session.previewOptions.templateId;
+    var json = previewOptions.json;
+    var options = previewOptions.options;
+
+    var html = yield templateGeneratorService.getHtml(templateId, json, options);
+
+    this.body = html;
   },
 
   getHtml: function * () {
@@ -28,5 +31,15 @@ module.exports = {
     var options = this.request.body.options;
 
     this.body = yield templateGeneratorService.getHtml(templateId, json, options);
+  },
+
+  sendEmail: function * () {
+    var templateId = this.params.templateId;
+    var json = this.request.body.json;
+    var options = this.request.body.options;
+
+    var html = yield templateGeneratorService.getHtml(templateId, json, options);
+
+    this.body = 'done';
   }
 };
