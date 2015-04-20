@@ -31,15 +31,21 @@ interface IProject {
   id?: string;
   name: string;
   description: string;
-  layoutHtml: string;
-  settings: IProjectSettings;
-  languages: ILanguage[];
+  settings?: IProjectSettings;
+  layouts?: ILayoutHtml[];
+  languages?: ILanguage[];
 }
 
 interface ILanguage {
   id?: string;
   key: string;
   name: string;
+}
+
+interface ILayoutHtml {
+  id?: string;
+  name: string;
+  layoutHtml: string;
 }
 
 interface IProjectSettings {

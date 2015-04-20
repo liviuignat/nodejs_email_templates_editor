@@ -1,4 +1,5 @@
-var projectFacade = require('./../bl/projectFacade');
+var ProjectFacade = require('./../bl/projectFacade');
+var projectFacade = new ProjectFacade();
 
 module.exports = {
   getProjects: function * () {

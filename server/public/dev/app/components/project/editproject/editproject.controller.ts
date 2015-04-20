@@ -13,19 +13,6 @@ class EditProjectController {
   static $inject: any[];
   project: IProject;
 
-  projectLayoutHtml: string = "";
-  projectLayoutEditorOptions = {
-    lineNumbers: true,
-    matchBrackets: true,
-    extraKeys: {
-      'Enter': 'newlineAndIndentContinueComment'
-    },
-    mode: {
-      name: 'htmlmixed'
-    },
-    theme: 'night'
-  };
-
   constructor(
     private $location,
     private $routeParams,
@@ -36,12 +23,10 @@ class EditProjectController {
 
     this.projectService.getProjectById(projectId).then((project: IProject) => {
       this.project = project;
-      this.projectLayoutHtml = this.project.layoutHtml;
     });
   }
 
   saveProject() {
-    this.project.layoutHtml = this.projectLayoutHtml;
 
     this.projectService.udpdateProject(this.project).then(() => {
       this.alertService.showSuccessAlert('Project saved!');

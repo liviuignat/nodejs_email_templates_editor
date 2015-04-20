@@ -2,6 +2,7 @@
 /// <reference path="./../../../common/services/template.service.ts"/>
 
 var $inject = [
+  '$window',
   '$location',
   '$routeParams',
   'AlertService',
@@ -15,6 +16,7 @@ class TemplateDetailController {
   template: ITemplate;
   activeTabIndex: number = 0;
   sendToTestEmail: string = '';
+  selectedHtmlLayout: ILayoutHtml = null;
 
   jsonEditorData: string = '';
   jsonEditorOptions = {
@@ -44,6 +46,7 @@ class TemplateDetailController {
   }
 
   constructor(
+    private $window,
     private $location,
     private $routeParams,
     private alertService: AlertService,
@@ -57,6 +60,10 @@ class TemplateDetailController {
 
     this.projectService.getProjectById(projectId).then((project: IProject) => {
       this.project = project;
+      var defaultLayout = project.layouts.filter((layout) => {
+          return layout.name === 'default';
+      })[0];
+      this.selectedHtmlLayout = defaultLayout;
     });
     this.templateService.getTemplateById(projectId, templateId).then((template: ITemplate) => {
       this.template = template;
@@ -96,7 +103,15 @@ class TemplateDetailController {
   }
 
   previewHtmlTemplate() {
-    this.alertService.showErrorAlert('Not yet implemented!');
+    var json = JSON.parse(this.jsonEditorData);
+    var options = {
+      layoutId: this.selectedHtmlLayout.id
+    };
+
+    this.templateService.previewTemplate(this.template.id, json, options).then((response) => {
+      var url = '/template/email/preview/' + this.template.id;
+      this.$window.open(url);
+    });
   }
 
   previewPdfTemplate() {

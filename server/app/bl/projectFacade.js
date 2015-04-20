@@ -1,8 +1,9 @@
 var q = require('q');
 var schema = require('./schemas');
 var Project = schema.Project;
+var Template = schema.Template;
 
-var ProjectFacade = function() {};
+var ProjectFacade = function () {};
 
 ProjectFacade.prototype.getProjects = function * () {
   var projects = yield Project.find();
@@ -17,6 +18,11 @@ ProjectFacade.prototype.getProjectById = function * (id) {
 };
 
 ProjectFacade.prototype.addProject = function * (newProject) {
+  newProject.layouts = [{
+    name: 'default',
+    layoutHtml: '<html>\n  <head>\n  <\/head>\n  <body>\n    <!--CONTENT-->\n  <\/body>\n<\/html>'
+  }];
+
   var project = yield new Project(newProject).save();
   return project;
 };
@@ -31,6 +37,9 @@ ProjectFacade.prototype.deleteProject = function * (id) {
   var response = yield Project.find({
     _id: id
   }).remove();
+  var responseTemplates = yield Template.find({
+    projectId: id
+  }).remove();
 };
 
-module.exports = new ProjectFacade();
+module.exports = ProjectFacade;

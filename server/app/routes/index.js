@@ -2,6 +2,7 @@ var util = require('util');
 var config = require('config');
 var projectRoutes = require('./projectRoutes');
 var templateRoutes = require('./templateRoutes');
+var templateGeneratorRoutes = require('./templateGeneratorRoutes');
 
 function setupApiRoutes(options) {
   var app = options.app;
@@ -18,6 +19,10 @@ function setupApiRoutes(options) {
   app.post(prefix + '/project/:projectId/template', templateRoutes.addTemplate);
   app.put(prefix + '/project/:projectId/template/:id', templateRoutes.updateTemplate);
   app.del(prefix + '/project/:projectId/template/:id', templateRoutes.deleteTemplate);
+
+  app.get('/template/email/preview/:templateId', templateGeneratorRoutes.previewFromSession);
+  app.post(prefix + '/email/preview/:templateId', templateGeneratorRoutes.previewSaveSession);
+  app.post(prefix + '/email/html/:templateId', templateGeneratorRoutes.getHtml);
 }
 
 function setupRoutes(app) {

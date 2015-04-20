@@ -117,6 +117,31 @@ class TemplateService {
 
     return deferred.promise;
   }
+
+  previewTemplate(templateId, json, options?) {
+    var deferred = this.$q.defer();
+    var url = '/api/email/preview/' + templateId;
+
+    this.$http({
+      method: 'POST',
+      data: {
+        json: json,
+        options: options
+      },
+      url: url
+    }).success((data, status) => {
+      if (status === 200) {
+        deferred.resolve(data);
+      }
+      deferred.reject();
+    }).error(() => {
+      deferred.reject();
+    }).catch(() => {
+      deferred.reject();
+    });
+
+    return deferred.promise;
+  }
 }
 
 TemplateService.$inject = $inject;

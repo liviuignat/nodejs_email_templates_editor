@@ -13,12 +13,22 @@
       <pre>project id: {{model.project.id}}</pre>
       <pre>template id: {{model.template.id}}</pre>
 
-      <strong>Test via email:</strong>
-      <div class="input-group">
-        <input type="email" class="form-control" placeholder="email to" ng-model="model.sendToTestEmail">
-        <span class="input-group-btn">
-          <button class="btn btn-primary" ng-click="model.sendTestEmail()" type="button">Send test email</button>
-        </span>
+      <div>
+        <strong>Choose a template:</strong>
+        <select
+          class="form-control" required
+          ng-options="layout as layout.name for layout in model.project.layouts track by layout.id"
+          ng-model="model.selectedHtmlLayout"/>
+      </div>
+
+      <div>
+        <strong>Test via email:</strong>
+        <div class="input-group">
+          <input type="email" class="form-control" placeholder="email to" ng-model="model.sendToTestEmail">
+          <span class="input-group-btn">
+            <button class="btn btn-primary" ng-click="model.sendTestEmail()" type="button">Send test email</button>
+          </span>
+        </div>
       </div>
 
       <br/>

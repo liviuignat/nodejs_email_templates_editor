@@ -38,6 +38,11 @@ angular.module('app').config(function ($routeProvider, $locationProvider) {
       controller: 'EditProjectController',
       controllerAs: 'model'
     })
+    .when('/project/:projectId/layouts', {
+      templateUrl: 'components/project/layouts/projectlayouts.controller.tpl.html',
+      controller: 'ProjectLayoutsController',
+      controllerAs: 'model'
+    })
     .when('/project/:projectId/languages', {
       templateUrl: 'components/project/languages/projectlanguages.controller.tpl.html',
       controller: 'ProjectLanguagesController',

@@ -1,4 +1,5 @@
-var templateFacade = require('./../bl/templateFacade');
+var TemplateFacade = require('./../bl/templateFacade');
+var templateFacade = new TemplateFacade();
 
 module.exports = {
   getTemplates: function * () {
