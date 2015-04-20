@@ -27,7 +27,6 @@ class EditProjectController {
   }
 
   saveProject() {
-
     this.projectService.udpdateProject(this.project).then(() => {
       this.alertService.showSuccessAlert('Project saved!');
     });
