@@ -20,3 +20,8 @@ gulp test-server //run server tests
 git remote add heroku [heroku_url]
 git push heroku master:master
 ```
+
+- create a project that will include the email template (it can be used over multiple projects)
+- edit multiple layouts for your emails (like master-pages)
+- create, edit and test email templates (json, html, translations)
+- call the API to generate the html or send the emails
