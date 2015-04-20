@@ -17,15 +17,9 @@ class ProjectLayoutsController {
 
   selectedLayout: ILayoutHtml = null;
   selectedLayoutEditorOptions = {
-    lineNumbers: true,
-    matchBrackets: true,
-    extraKeys: {
-      'Enter': 'newlineAndIndentContinueComment'
-    },
     mode: {
       name: 'htmlmixed'
-    },
-    theme: 'night'
+    }
   };
 
   constructor(

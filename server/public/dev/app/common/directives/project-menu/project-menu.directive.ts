@@ -7,7 +7,7 @@ var $inject: string[] = [
 
 class ProjectMenuDirective {
   static $inject: string[] = $inject;
-  static $templateUrl = 'common/directives/projectmenu/projectmenu.directive.tpl.html';
+  static $templateUrl = 'common/directives/project-menu/project-menu.directive.tpl.html';
   static $scope = {
     projectId: '=',
     activeIndex: '@'

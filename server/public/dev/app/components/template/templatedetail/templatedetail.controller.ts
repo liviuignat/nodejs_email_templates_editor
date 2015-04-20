@@ -20,29 +20,17 @@ class TemplateDetailController {
 
   jsonEditorData: string = '';
   jsonEditorOptions = {
-    lineNumbers: true,
-    matchBrackets: true,
-    extraKeys: {
-      'Enter': 'newlineAndIndentContinueComment'
-    },
     mode: {
       name: 'javascript',
       json: true
-    },
-    theme: 'night'
+    }
   }
 
   htmlEditorData: string = "";
   htmlEditorOptions = {
-    lineNumbers: true,
-    matchBrackets: true,
-    extraKeys: {
-      'Enter': 'newlineAndIndentContinueComment'
-    },
     mode: {
       name: 'htmlmixed'
-    },
-    theme: 'night'
+    }
   }
 
   constructor(
@@ -56,8 +44,6 @@ class TemplateDetailController {
     var projectId = this.$routeParams.projectId;
     var templateId = this.$routeParams.templateId;
 
-    this.setActive(0);
-
     this.projectService.getProjectById(projectId).then((project: IProject) => {
       this.project = project;
       var defaultLayout = project.layouts.filter((layout) => {
@@ -69,6 +55,7 @@ class TemplateDetailController {
       this.template = template;
       this.jsonEditorData = this.template.sampleJson;
       this.htmlEditorData = this.template.templateHtml;
+      this.setActive(0);
     });
   }
 

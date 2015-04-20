@@ -41,10 +41,10 @@
     </div>
 
     <div role="tabpanel" class="tab-pane" ng-class="{'active': model.isActive(1)}">
-      <ui-codemirror ui-codemirror-opts="model.htmlEditorOptions" ng-model="model.htmlEditorData"></ui-codemirror>
+      <code-editor options="model.htmlEditorOptions" ng-model="model.htmlEditorData"></code-editor>
     </div>
     <div role="tabpanel" class="tab-pane" ng-class="{'active': model.isActive(2)}">
-      <ui-codemirror ui-codemirror-opts="model.jsonEditorOptions" ng-model="model.jsonEditorData"></ui-codemirror>
+      <code-editor options="model.jsonEditorOptions" ng-model="model.jsonEditorData"></code-editor>
     </div>
   </div>
 

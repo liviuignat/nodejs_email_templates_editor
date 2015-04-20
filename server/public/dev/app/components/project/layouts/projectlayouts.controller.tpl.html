@@ -10,12 +10,7 @@
 
     <div>
       <table class="table table-hover">
-        <caption>Layouts</caption>
         <tbody>
-          <tr>
-            <th style="width:70%;">Name</th>
-            <th style="width:30%;">&nbsp;</th>
-          </tr>
           <tr ng-repeat="layout in model.layouts"
             ng-click="model.selectLayout(layout)"
             class="projectLayoutRow"
@@ -50,7 +45,7 @@
 
     <div>
       <br/>
-      <ui-codemirror ui-codemirror-opts="model.selectedLayoutEditorOptions" ng-model="model.selectedLayout.layoutHtml"></ui-codemirror>
+      <code-editor options="model.selectedLayoutEditorOptions" ng-model="model.selectedLayout.layoutHtml"></code-editor>
     </div>
 
   </div>
